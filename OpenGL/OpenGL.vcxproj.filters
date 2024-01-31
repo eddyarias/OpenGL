@@ -24,16 +24,33 @@
     <ClCompile Include="..\OpenGL_Stuff\Library\glad.c">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="B1T5_Eddy_Arias_code.cpp">
+    <ClCompile Include="B2T2_code.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shaders\B1T5_fragmentshader.fs">
+    <None Include="shaders\shader_B2T2.vs">
       <Filter>Archivos de origen\shaders</Filter>
     </None>
-    <None Include="shaders\B1T5_vertexshader.vs">
+    <None Include="shaders\shader_B2T2.fs">
       <Filter>Archivos de origen\shaders</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="textures\texture1.jpg">
+      <Filter>Archivos de origen\textures</Filter>
+    </Image>
+    <Image Include="textures\texture2.jpg">
+      <Filter>Archivos de origen\textures</Filter>
+    </Image>
+    <Image Include="textures\texture3.jpg">
+      <Filter>Archivos de origen\textures</Filter>
+    </Image>
+    <Image Include="textures\texture4.jpg">
+      <Filter>Archivos de origen\textures</Filter>
+    </Image>
+    <Image Include="textures\texture5.jpg">
+      <Filter>Archivos de origen\textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>
