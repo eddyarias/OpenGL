@@ -133,18 +133,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\OpenGL_Stuff\Library\glad.c" />
-    <ClCompile Include="B2T2_code.cpp" />
+    <ClCompile Include="C3_Exercise_15_LCaster_Task3.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="shaders\shader_B2T2.fs" />
-    <None Include="shaders\shader_B2T2.vs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="textures\texture1.jpg" />
-    <Image Include="textures\texture2.jpg" />
-    <Image Include="textures\texture3.jpg" />
-    <Image Include="textures\texture4.jpg" />
-    <Image Include="textures\texture5.jpg" />
+    <None Include="shaders\shader_exercise15t2_casters.fs" />
+    <None Include="shaders\shader_exercise15t2_casters.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

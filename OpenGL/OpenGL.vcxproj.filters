@@ -24,33 +24,16 @@
     <ClCompile Include="..\OpenGL_Stuff\Library\glad.c">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="B2T2_code.cpp">
+    <ClCompile Include="C3_Exercise_15_LCaster_Task3.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shaders\shader_B2T2.vs">
+    <None Include="shaders\shader_exercise15t2_casters.fs">
       <Filter>Archivos de origen\shaders</Filter>
     </None>
-    <None Include="shaders\shader_B2T2.fs">
+    <None Include="shaders\shader_exercise15t2_casters.vs">
       <Filter>Archivos de origen\shaders</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="textures\texture1.jpg">
-      <Filter>Archivos de origen\textures</Filter>
-    </Image>
-    <Image Include="textures\texture2.jpg">
-      <Filter>Archivos de origen\textures</Filter>
-    </Image>
-    <Image Include="textures\texture3.jpg">
-      <Filter>Archivos de origen\textures</Filter>
-    </Image>
-    <Image Include="textures\texture4.jpg">
-      <Filter>Archivos de origen\textures</Filter>
-    </Image>
-    <Image Include="textures\texture5.jpg">
-      <Filter>Archivos de origen\textures</Filter>
-    </Image>
   </ItemGroup>
 </Project>
