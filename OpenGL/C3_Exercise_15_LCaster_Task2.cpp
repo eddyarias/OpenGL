@@ -37,7 +37,7 @@ float lastFrame = 0.0f;
 
 //Exercise 13
 //lighting
-glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
+glm::vec3 lightPos(xlightPos, ylightPos, zlightPos);
 
 int main()
 {
@@ -91,55 +91,60 @@ int main()
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
 
- float vertices[] = {
-        // positions          // normals           // texture coords
-        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f,
-         0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  0.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  1.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  1.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f,
+    float vertices[] = {
+        // positions         //normales           // texture coords
+       -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.533f,  0.5f,         //a
+        0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.724f,  0.5f,         //b
+        0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.724f,  0.326f,       //c
+       -0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.533f,  0.326f,       //d
+        0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.724f,  0.326f,       //c
+       -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.533f,  0.5f,         //a
 
-        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f,
-         0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  1.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  1.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f,
+       -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.338f,  0.5f,         //h
+       -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.533f,  0.5f,         //a    
+       -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.533f,  0.326f,       //d
+       -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.338f,  0.326f,       //g
+       -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.338f,  0.5f,         //h
+       -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.533f,  0.326f,       //d
 
-        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-        -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  1.0f,
-        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  0.0f,
-        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
+        0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.724f,  0.326f,       //c
+        0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.724f,  0.5f,         //b
+        0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.925f,  0.326f,       //e
+        0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.925f,  0.5f,         //f
+        0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.724f,  0.5f,         //b
+        0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.925f,  0.326f,       //e
 
-         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-         0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  1.0f,
-         0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-         0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-         0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
+       -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.533f,  0.5f,         //a    
+        0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.724f,  0.5f,         //b
+       -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.533f,  0.745f,       //h
+        0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.724f,  0.745f,       //f
+        0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.724f,  0.5f,         //b
+       -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.533f,  0.745f,       //h
 
-        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  1.0f,
-         0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  1.0f,
-         0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  0.0f,
-         0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  0.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  0.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  1.0f,
+        0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.143f,  0.326f,       //e
+       -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.339f,  0.326f,       //g
+        0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.143f,  0.5f,         //f
+       -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.369f,  0.5f,         //h
+       -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.339f,  0.326f,       //g
+        0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.143f,  0.5f,         //f
 
-        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  1.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  0.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  0.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f
+       -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.533f,  0.079f,       //g
+        0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.729f,  0.079f,       //e
+       -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.533f,  0.326f,       //d
+        0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.729f,  0.326f,       //c
+        0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.729f,  0.079f,       //e
+       -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.533f,  0.326f,       //d
     };
 
 //Exercise 15 Task 1
 //positions all containers
 glm::vec3 cubePositions[] = {
-        glm::vec3( 0.0f,  0.0f,  0.0f),
+       /* glm::vec3(-1.5f, -0.5f, -2.0f),
+        glm::vec3(1.5f,  -0.5f, -2.0f),
+        glm::vec3(0.0f,  -0.5f,  -2.0f),
+        glm::vec3(0.0, 1.0f, -2.0f),
+        glm::vec3(0.0, -2.0f, -2.0f)*/
+        glm::vec3(0.0f,  0.0f,  0.0f),
         glm::vec3( 2.0f,  5.0f, -15.0f),
         glm::vec3(-1.5f, -2.2f, -2.5f),
         glm::vec3(-3.8f, -2.0f, -12.3f),
@@ -191,6 +196,13 @@ glm::vec3 cubePositions[] = {
     lightingShader.setInt("material.diffuse", 0);
     lightingShader.setInt("material.specular", 1);
    
+    std::string imagenesJpg[5] = { "texture1","texture2","texture3","texture4","texture5" };
+    unsigned int textures[5];
+
+    for (int i = 0; i < 5; i++) {
+        std::string ruta = "textures/" + imagenesJpg[i] + ".jpg";
+        textures[i] = loadTexture(ruta.c_str());
+    }
 
  // render loop
  // -----------
@@ -231,7 +243,7 @@ glm::vec3 cubePositions[] = {
 	 
 
      // material properties
-     lightingShader.setFloat("material.shininess", 32.0f);
+     lightingShader.setFloat("material.shininess", 16.0f);
 
 
 
@@ -263,14 +275,16 @@ glm::vec3 cubePositions[] = {
 	 //Exercise 15 Task 1
 	 //render containers
 	 glBindVertexArray(cubeVAO);
-	 for (unsigned int i = 0; i < 10; i++){
+	 for (unsigned int i = 0; i < 5; i++){
 		//calculate the model matrix for each object and pass it to the shader before drawing
 		glm::mat4 model = glm::mat4(1.0f);
 		model = glm::translate(model, cubePositions[i]);
 		float angle = 20.0f * i; 
-		model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+		//model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
 		lightingShader.setMat4("model", model);
-		
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, textures[i]);
+
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 	 }
 

@@ -2,10 +2,10 @@
 out vec4 FragColor;
 
 struct Material {
-    sampler2D diffuse;
-    sampler2D specular;    
-	sampler2D emission;
-    float shininess;
+sampler2D diffuse;
+sampler2D specular;    
+sampler2D emission;
+float shininess;
 }; 
 
 struct Light {
