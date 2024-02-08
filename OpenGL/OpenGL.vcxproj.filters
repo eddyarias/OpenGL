@@ -24,15 +24,18 @@
     <ClCompile Include="..\OpenGL_Stuff\Library\glad.c">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="C3_Exercise_15_LCaster_Task3.cpp">
+    <ClCompile Include="C3_Exercise_15_LCaster_Task5Marco.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="B2T2_code.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shaders\shader_exercise15t2_casters.fs">
+    <None Include="shaders\shader_exercise15t5_casters.fs">
       <Filter>Archivos de origen\shaders</Filter>
     </None>
-    <None Include="shaders\shader_exercise15t2_casters.vs">
+    <None Include="shaders\shader_exercise15t5_casters.vs">
       <Filter>Archivos de origen\shaders</Filter>
     </None>
   </ItemGroup>
