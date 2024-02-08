@@ -26,7 +26,7 @@ const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
 // camera
-Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+Camera camera(glm::vec3(0.0f, 0.0f, 6.0f));
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
@@ -148,16 +148,16 @@ glm::vec3 cubePositions[] = {
         glm::vec3(0.0f,  -0.5f,  -2.0f),
         glm::vec3(0.0, 1.0f, -2.0f),
         glm::vec3(0.0, -2.0f, -2.0f)*/
-        glm::vec3(0.0f,  0.0f,  0.0f),
-        glm::vec3( 2.0f,  5.0f, -15.0f),
+        glm::vec3( 0.0f,  0.0f, -1.0f),
+        glm::vec3( 2.0f,  2.0f, -4.0f),
         glm::vec3(-1.5f, -2.2f, -2.5f),
-        glm::vec3(-3.8f, -2.0f, -12.3f),
+        glm::vec3(-3.8f, -2.0f, -3.3f),
         glm::vec3( 2.4f, -0.4f, -3.5f),
-        glm::vec3(-1.7f,  3.0f, -7.5f),
+        /*glm::vec3(-1.7f,  3.0f, -7.5f),
         glm::vec3( 1.3f, -2.0f, -2.5f),
         glm::vec3( 1.5f,  2.0f, -2.5f),
         glm::vec3( 1.5f,  0.2f, -1.5f),
-        glm::vec3(-1.3f,  1.0f, -1.5f)
+        glm::vec3(-1.3f,  1.0f, -1.5f)*/
     };
 
 	
@@ -231,7 +231,7 @@ glm::vec3 cubePositions[] = {
      lightingShader.use();
 	 
      float xlightPos = sin(glfwGetTime()) * 3.5f; // Trayectoria sinusoidal en el eje X
-     //float ylightPos = cos(glfwGetTime()) * 0.75f; // Trayectoria sinusoidal en el eje Y
+     float ylightPos = sin(glfwGetTime()) * 0.75f; // Trayectoria sinusoidal en el eje Y
      float zlightPos = cos(glfwGetTime()) * 1.5f; // Trayectoria sinusoidal en el eje Y
 
      glm::vec3 lightPos(xlightPos, ylightPos, zlightPos);
@@ -251,11 +251,8 @@ glm::vec3 cubePositions[] = {
      lightingShader.setFloat("light.linear", 0.09f);
      lightingShader.setFloat("light.quadratic", 0.032f);
 	 
-
      // material properties
-     lightingShader.setFloat("material.shininess", 16.0f);
-
-
+     lightingShader.setFloat("material.shininess", 0.5f);
 
      // view/projection transformations
      glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
@@ -271,7 +268,6 @@ glm::vec3 cubePositions[] = {
 	 // bind diffuse map
      glActiveTexture(GL_TEXTURE0);
      glBindTexture(GL_TEXTURE_2D, diffuseMap);
-	 
 	
 	 // bind specular map
 	 glActiveTexture(GL_TEXTURE1);
@@ -289,7 +285,7 @@ glm::vec3 cubePositions[] = {
 		//calculate the model matrix for each object and pass it to the shader before drawing
 		glm::mat4 model = glm::mat4(1.0f);
 		model = glm::translate(model, cubePositions[i]);
-		float angle = 20.0f * i; 
+		//float angle = (sin(glfwGetTime()) +0.5)*360.0f ;
 		//model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
 		lightingShader.setMat4("model", model);
         glActiveTexture(GL_TEXTURE0);

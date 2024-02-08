@@ -10,7 +10,6 @@ float shininess;
 
 struct Light {
     vec3 position;
-
     vec3 ambient;
     vec3 diffuse;
     vec3 specular;
@@ -50,7 +49,6 @@ void main()
     {
         /*apply emission texture */
         emission = texture(material.emission, TexCoords).rgb;
-        
     }
         
     vec3 result = ambient + diffuse + specular + emission;
