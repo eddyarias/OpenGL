@@ -136,8 +136,8 @@
     <ClCompile Include="B2T3.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="shaders\shader_B2T3_materials.fs" />
-    <None Include="shaders\shader_B2T3_materials.vs" />
+    <None Include="shaders\shader_B2T3_casters.fs" />
+    <None Include="shaders\shader_B2T3_casters.vs" />
     <None Include="shaders\shader_B2T3_lightcube.fs" />
     <None Include="shaders\shader_B2T3_lightcube.vs" />
   </ItemGroup>

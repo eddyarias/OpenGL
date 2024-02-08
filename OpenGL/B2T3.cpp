@@ -89,8 +89,8 @@ int main()
 
 	    // build and compile our shader zprogram
     // ------------------------------------
-    Shader lightingShader("shaders/shader_exercise15t2_casters.vs", "shaders/shader_exercise15t2_casters.fs");
-	Shader lightCubeShader("shaders/shader_exercise15_lightcube.vs", "shaders/shader_exercise15_lightcube.fs");
+    Shader lightingShader("shaders/shader_B2T3_casters.vs", "shaders/shader_B2T3_casters.fs");
+	Shader lightCubeShader("shaders/shader_B2T3_lightcube.vs", "shaders/shader_B2T3_lightcube.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -140,24 +140,13 @@ int main()
        -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.533f,  0.326f,       //d
     };
 
-//Exercise 15 Task 1
 //positions all containers
 glm::vec3 cubePositions[] = {
-       /* glm::vec3(-1.5f, -0.5f, -2.0f),
-        glm::vec3(1.5f,  -0.5f, -2.0f),
-        glm::vec3(0.0f,  -0.5f,  -2.0f),
-        glm::vec3(0.0, 1.0f, -2.0f),
-        glm::vec3(0.0, -2.0f, -2.0f)*/
         glm::vec3( 0.0f,  0.0f, -1.0f),
         glm::vec3( 2.0f,  2.0f, -4.0f),
         glm::vec3(-1.5f, -2.2f, -2.5f),
         glm::vec3(-3.8f, -2.0f, -3.3f),
         glm::vec3( 2.4f, -0.4f, -3.5f),
-        /*glm::vec3(-1.7f,  3.0f, -7.5f),
-        glm::vec3( 1.3f, -2.0f, -2.5f),
-        glm::vec3( 1.5f,  2.0f, -2.5f),
-        glm::vec3( 1.5f,  0.2f, -1.5f),
-        glm::vec3(-1.3f,  1.0f, -1.5f)*/
     };
 
 	
@@ -177,7 +166,6 @@ glm::vec3 cubePositions[] = {
  glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
  glEnableVertexAttribArray(2);
 
-
  // second, configure the light's VAO (VBO stays the same; the vertices are the same for the light object which is also a 3D cube)
  unsigned int lightCubeVAO;
  glGenVertexArrays(1, &lightCubeVAO);
@@ -190,12 +178,10 @@ glm::vec3 cubePositions[] = {
  glEnableVertexAttribArray(0);
 
  // load textures (we now use a utility function to keep the code more organized)
-    // -----------------------------------------------------------------------------
     unsigned int diffuseMap = loadTexture("textures/container2.png");
 	unsigned int specularMap = loadTexture("textures/container2_specular.png");
 	
     // shader configuration
-    // --------------------
     lightingShader.use(); 
     lightingShader.setInt("material.diffuse", 0);
     lightingShader.setInt("material.specular", 1);
@@ -209,21 +195,17 @@ glm::vec3 cubePositions[] = {
     }
 
  // render loop
- // -----------
  while (!glfwWindowShouldClose(window))
  {
      // per-frame time logic
-     // --------------------
      float currentFrame = glfwGetTime();
      deltaTime = currentFrame - lastFrame;
      lastFrame = currentFrame;
 
      // input
-     // -----
      processInput(window);
 
      // render
-     // ------
      glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -235,8 +217,6 @@ glm::vec3 cubePositions[] = {
      float zlightPos = cos(glfwGetTime()) * 1.5f; // Trayectoria sinusoidal en el eje Y
 
      glm::vec3 lightPos(xlightPos, ylightPos, zlightPos);
-
-     //Exercise 15 Task 2
      lightingShader.setVec3("light.position", lightPos);
 	 
      lightingShader.setVec3("viewPos", camera.Position);
@@ -264,7 +244,6 @@ glm::vec3 cubePositions[] = {
      glm::mat4 model = glm::mat4(1.0f);
      lightingShader.setMat4("model", model);
 	 
-	 
 	 // bind diffuse map
      glActiveTexture(GL_TEXTURE0);
      glBindTexture(GL_TEXTURE_2D, diffuseMap);
@@ -273,12 +252,6 @@ glm::vec3 cubePositions[] = {
 	 glActiveTexture(GL_TEXTURE1);
      glBindTexture(GL_TEXTURE_2D, specularMap);
 
-
-     // render the cube
-     //glBindVertexArray(cubeVAO);
-     //glDrawArrays(GL_TRIANGLES, 0, 36);
-
-	 //Exercise 15 Task 1
 	 //render containers
 	 glBindVertexArray(cubeVAO);
 	 for (unsigned int i = 0; i < 5; i++){
@@ -294,7 +267,6 @@ glm::vec3 cubePositions[] = {
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 	 }
 
-	  //Exercise 15 Task 2
        lightCubeShader.use();
        lightCubeShader.setMat4("projection", projection);
        lightCubeShader.setMat4("view", view);
@@ -308,30 +280,25 @@ glm::vec3 cubePositions[] = {
 
 
      // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-     // -------------------------------------------------------------------------------
      glfwSwapBuffers(window);
      glfwPollEvents();
  }
 
  // optional: de-allocate all resources once they've outlived their purpose:
- // ------------------------------------------------------------------------
  glDeleteVertexArrays(1, &cubeVAO);
  glDeleteVertexArrays(1, &lightCubeVAO);
  glDeleteBuffers(1, &VBO);
 
  // glfw: terminate, clearing all previously allocated GLFW resources.
- // ------------------------------------------------------------------
  glfwTerminate();
  return 0;
 }
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
-// ---------------------------------------------------------------------------------------------------------
 void processInput(GLFWwindow* window)
 {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
-
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
         camera.ProcessKeyboard(FORWARD, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
@@ -343,7 +310,6 @@ void processInput(GLFWwindow* window)
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
-// ---------------------------------------------------------------------------------------------
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
     // make sure the viewport matches the new window dimensions; note that width and 
@@ -353,7 +319,6 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 
 
 // glfw: whenever the mouse moves, this callback is called
-// -------------------------------------------------------
 void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 {
     if (firstMouse)
@@ -373,15 +338,11 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 }
 
 // glfw: whenever the mouse scroll wheel scrolls, this callback is called
-// ----------------------------------------------------------------------
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
     camera.ProcessMouseScroll(yoffset);
 }
 
-//Exercise 14 Task 2
-// utility function for loading a 2D texture from file
-// ---------------------------------------------------
 unsigned int loadTexture(char const * path)
 {
     unsigned int textureID;
@@ -415,6 +376,5 @@ unsigned int loadTexture(char const * path)
         std::cout << "Texture failed to load at path: " << path << std::endl;
         stbi_image_free(data);
     }
-
     return textureID;
 }

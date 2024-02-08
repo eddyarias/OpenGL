@@ -35,10 +35,10 @@
     <None Include="shaders\shader_B2T3_lightcube.vs">
       <Filter>Archivos de origen\shaders</Filter>
     </None>
-    <None Include="shaders\shader_B2T3_materials.fs">
+    <None Include="shaders\shader_B2T3_casters.fs">
       <Filter>Archivos de origen\shaders</Filter>
     </None>
-    <None Include="shaders\shader_B2T3_materials.vs">
+    <None Include="shaders\shader_B2T3_casters.vs">
       <Filter>Archivos de origen\shaders</Filter>
     </None>
   </ItemGroup>
