@@ -37,7 +37,11 @@ float lastFrame = 0.0f;
 
 //Exercise 13
 //lighting
-glm::vec3 lightPos(xlightPos, ylightPos, zlightPos);
+
+float xlightPos = 1.0f;
+float ylightPos = 1.0f;
+float zlightPos = 1.0f;
+
 
 int main()
 {
@@ -226,7 +230,13 @@ glm::vec3 cubePositions[] = {
      // be sure to activate shader when setting uniforms/drawing objects
      lightingShader.use();
 	 
-	 //Exercise 15 Task 2
+     float xlightPos = sin(glfwGetTime()) * 3.5f; // Trayectoria sinusoidal en el eje X
+     //float ylightPos = cos(glfwGetTime()) * 0.75f; // Trayectoria sinusoidal en el eje Y
+     float zlightPos = cos(glfwGetTime()) * 1.5f; // Trayectoria sinusoidal en el eje Y
+
+     glm::vec3 lightPos(xlightPos, ylightPos, zlightPos);
+
+     //Exercise 15 Task 2
      lightingShader.setVec3("light.position", lightPos);
 	 
      lightingShader.setVec3("viewPos", camera.Position);
