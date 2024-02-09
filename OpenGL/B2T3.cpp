@@ -58,7 +58,7 @@ int main()
 
     // glfw window creation
     // --------------------
-    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Exercise 15 Task 2", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Eddy Arias Ci: 1725589681", NULL, NULL);
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -83,17 +83,13 @@ int main()
 
 
     // configure global opengl state
-    //Exercise 11 Task 3
-    // -----------------------------
     glEnable(GL_DEPTH_TEST);
 
 	    // build and compile our shader zprogram
-    // ------------------------------------
     Shader lightingShader("shaders/shader_B2T3_casters.vs", "shaders/shader_B2T3_casters.fs");
 	Shader lightCubeShader("shaders/shader_B2T3_lightcube.vs", "shaders/shader_B2T3_lightcube.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
-    // ------------------------------------------------------------------
 
     float vertices[] = {
         // positions         //normales           // texture coords
@@ -226,7 +222,6 @@ glm::vec3 cubePositions[] = {
      lightingShader.setVec3("light.diffuse", 0.5f, 0.5f, 0.5f);
      lightingShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
 	 
-	 //Exercise 15 Task 2
 	 lightingShader.setFloat("light.constant", 1.0f);
      lightingShader.setFloat("light.linear", 0.09f);
      lightingShader.setFloat("light.quadratic", 0.032f);
@@ -255,15 +250,11 @@ glm::vec3 cubePositions[] = {
 	 //render containers
 	 glBindVertexArray(cubeVAO);
 	 for (unsigned int i = 0; i < 5; i++){
-		//calculate the model matrix for each object and pass it to the shader before drawing
 		glm::mat4 model = glm::mat4(1.0f);
 		model = glm::translate(model, cubePositions[i]);
-		//float angle = (sin(glfwGetTime()) +0.5)*360.0f ;
-		//model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
 		lightingShader.setMat4("model", model);
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, textures[i]);
-
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 	 }
 
@@ -272,12 +263,11 @@ glm::vec3 cubePositions[] = {
        lightCubeShader.setMat4("view", view);
        model = glm::mat4(1.0f);
        model = glm::translate(model, lightPos);
-       model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
+       model = glm::scale(model, glm::vec3(0.2f)); 
        lightCubeShader.setMat4("model", model);
 
        glBindVertexArray(lightCubeVAO);
        glDrawArrays(GL_TRIANGLES, 0, 36);
-
 
      // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
      glfwSwapBuffers(window);
@@ -312,8 +302,6 @@ void processInput(GLFWwindow* window)
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
-    // make sure the viewport matches the new window dimensions; note that width and 
-    // height will be significantly larger than specified on retina displays.
     glViewport(0, 0, width, height);
 }
 
